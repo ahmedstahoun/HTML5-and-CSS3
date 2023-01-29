@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .streaming.slider{
+            width: 100%;
+        }
+
+    </style>
+</head>
+<body>
+    <h1>video</h1>
+    <video src="frozen.mp4" 
+    width = 500 
+    poster="frozen.jpg"
+    id="vid">
+    </video>
+
+    <section id="streaming" >
+    <input type="range"  id="slider" min="0" max="100" value="0" />
+    <span id="curtimetext">00:00</span> / <span id="durtimetext">00:00</span>
+</section>
+   
+<section class="vidOptions">
+    <button type="button" onclick="playVid()">Play</button>
+    <button type="button" onclick="pauseVid()">Stop</button>
+    <button type="button" onclick="start()"><<</button>
+    <button type="button" onclick="backward()"><</button>
+    <button type="button" onclick="forward()">></button>
+    <button type="button" onclick="end()">>></button>
+
+    <input type="range" id="volume" min="0" max="1" step="0.1" value="1"/>
+    <button type="button" onclick="mute()">mute</button>
+</section>
+<div>speed:<input type="range" id="playSpeed" min="1" max="16" step="1" value="1" step="1">
+<button type="button" onclick="fullScreen()">fullScreen</button>
+</div>   
+
+    
+    
+    <script>
+       var vid = document.getElementById("vid");
+       slider = document.getElementById("slider");
+	curtimetext = document.getElementById("curtimetext");
+	durtimetext = document.getElementById("durtimetext");
+    // event listners
+	slider.addEventListener("change",vidSeek);
+	vid.addEventListener("timeupdate",seektimeupdate);
+    playSpeed.addEventListener("change",()=>{
+        vid.playbackRate=playSpeed.value;
+      })
+      volume.addEventListener("change",()=>{
+        vid.volume=volume.value;
+      })
+      console.log(vid);
+      function playVid(){
+        vid.play();
+        vid.volume = 1;
+      }
+      
+      
+      function pauseVid(){
+        vid.pause();
+      }
+
+      function mute(){
+        vid.volume=0;
+      }
+
+      
+      function vidSeek(){
+	var seekto = vid.duration * (slider.value / 100);
+	vid.currentTime = seekto;
+}
+function start(){vid.currentTime=0;}
+function end(){vid.currentTime=vid.duration;}
+function backward(){vid.currentTime=vid.currentTime-10;}
+function forward(){vid.currentTime=vid.currentTime+10}
+function fullScreen(){vid.requestFullscreen()}
+function seektimeupdate(){
+	var nt = vid.currentTime * (100 / vid.duration);
+	slider.value = nt;
+	var curmins = Math.floor(vid.currentTime / 60);
+	var cursecs = Math.floor(vid.currentTime - curmins * 60);
+	var durmins = Math.floor(vid.duration / 60);
+	var dursecs = Math.floor(vid.duration - durmins * 60);
+	if(cursecs < 10){ cursecs = "0"+cursecs; }
+	if(dursecs < 10){ dursecs = "0"+dursecs; }
+	if(curmins < 10){ curmins = "0"+curmins; }
+	if(durmins < 10){ durmins = "0"+durmins; }
+	curtimetext.innerHTML = curmins+":"+cursecs;
+	durtimetext.innerHTML = durmins+":"+dursecs;
+}
+
+      
+
+    </script>
+</body>
+</html>

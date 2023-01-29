@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <canvas width="500" height="500" style="border:1px solid rgb(10, 10, 10)" id="can"></canvas>
+
+    <script>
+
+ var can = document.getElementById("can");
+    var ctx = can.getContext("2d");
+    let x1=0 , y1=0;
+    
+    ctx.beginPath();
+    ctx.moveTo(0,0);
+    
+    ctx.lineWidth = 10;
+    ctx.strokeStyle = "red" ;
+    let animation = setInterval(()=>{
+
+        ctx.lineTo(x1,y1);
+        ctx.stroke();
+        x1=x1+5;
+        y1=y1+5;
+    
+        if(x1>500  && y1>500){
+            alert("Animation Ended");
+        clearInterval(animation)
+        }
+ },100);
+
+
+
+    </script>
+</body>
+</html>

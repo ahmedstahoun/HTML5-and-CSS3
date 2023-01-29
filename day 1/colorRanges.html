@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+   <div id="red">
+    Red   &emsp; &emsp; <input type="range" id="reddish" min="0" max="255" value="0"/>
+   </div> 
+   <br>
+   <div id="green">
+    Green   &emsp; &emsp; <input type="range" id="greenish" min="0" max="255" value="0"/>
+   </div>
+   <br>
+   <div id="blue">
+    Blue   &emsp; &emsp; <input type="range" id="blueish" min="0" max="255" value="0"/>
+   </div>
+   <br>
+   <div id="text">
+    <h1>change the 3 colors above and observe my change</h1>
+   </div>
+
+   <script>
+
+var  redRange = document.getElementById("reddish")
+var  greenRange = document.getElementById("greenish")
+var  blueRange = document.getElementById("blueish")
+var  txtToChange = document.getElementById("text")
+
+redRange.addEventListener("change", () => {
+  txtToChange.style.color = `rgb(${redRange.value},${greenRange.value},${blueRange.value}`;
+});
+
+greenRange.addEventListener("change", () => {
+  txtToChange.style.color = `rgb(${redRange.value},${greenRange.value},${blueRange.value}`;
+});
+
+blueRange.addEventListener("change", () => {
+  txtToChange.style.color = `rgb(${redRange.value},${greenRange.value},${blueRange.value}`;
+});
+
+   </script>
+</body>
+</html>
