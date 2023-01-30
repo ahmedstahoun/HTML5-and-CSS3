@@ -1,0 +1,62 @@
+*, *::before,*::after{
+    box-sizing: border-box;
+}
+
+body{
+    margin: 0;
+    
+}
+
+.vidContainer{
+    position: relative;
+    width: 90%;
+    max-width:1000px;
+    display: flex;
+    justify-content: center;
+    margin-inline: auto;
+}
+
+video{
+    width: 100%;
+}
+
+.vidControls{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right:0;
+    color: white;
+    z-index: 100;
+    opacity: 0;
+    transition: opacity 150ms ease-in-out;
+}
+
+.vidContainer:hover .vidControls,
+.vidContainer:focus-within.vidControls,
+.vidContainer.paused.vidControls{
+    opacity: 1;
+}
+
+
+.vidControls.controls{
+display: flex;
+gap: .5rem;
+padding: 2.5rem;
+align-items:center ;
+
+}
+
+
+.vidControls .controls button{
+background: none;
+border: none;
+color: inherit;
+padding: 0;
+height: 30px;
+width: 30px;
+font-size: 1.1rem;
+}
+
+.timelineContainer{
+    display: flex;
+}

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+    input:invalid,:valid,:focus{
+        border-radius: 0.3cm;
+    }
+    input:valid {
+        border:2px solid green;
+        
+      }
+      
+      input:invalid {
+        border: 2px solid red;
+      }
+      
+      input:focus {
+        border: 2px solid  black;
+      }
+      input:valid+p{
+        visibility: hidden;
+      }
+      </style>
+</head>
+<body>
+    <form action="changed.html" id="formElement">
+
+        <h2>Change Email Address</h2>
+       
+        <input type="text" placeholder="Username" pattern="[A-z]+" required id="Username"/>
+        <p>The Required username must be only alphabetics</p>
+
+        <br>
+        
+        <input
+        type="email"  placeholder="Email" pattern="^[A-z0-9-.]+@[A-z0-9]+\.[A-z0-9]+$" required id="Email"/>
+        <p>
+            The Required Email must be valid and must contain @ sign</p>
+        
+        <br>
+
+        <button id="btn">Change</button>
+
+    </form>
+
+    <script>
+
+const username = document.getElementById("Username"),
+  email = document.getElementById("Email"),
+  formElement = document.getElementById("formElement");
+
+formElement.addEventListener("submit", (e) => {
+  
+  localStorage.setItem("username", username.value);
+  localStorage.setItem("email", email.value);
+  
+});
+
+
+    </script>
+</body>
+</html>
